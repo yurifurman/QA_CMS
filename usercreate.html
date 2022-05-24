@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+<div id="root" class="users-root">
+    <div class="header">
+        <div class="logo">
+            <a href="dashboard.html"><img src="img/logo.jpg" class="logo" id="logo"></a>
+        </div>
+        <div class="header-tabs">
+            <div><button type="button" class="header-tabs-button" id="user">Users</button></div>
+            <div><button type="button" class="header-tabs-button" id="project">Projects</button></div>
+            <div><button type="button" class="header-tabs-button" id="company">Company</button></div>
+            <div><button type="button" class="header-tabs-button" id="group">Group</button></div>
+            <a><img src="img/magnifier.svg" class="img-magnifier" ><input type="text" class="header-search" id="search" ></a>
+            <img src="img/user.png" class="header-user" id="userClick">
+            <div id="myAccount"></div>
+        </div>
+        <div class="separate"></div>
+    </div>
+    <div class="body">
+        <div class="page-title"><label class="title-page">Create User</label> <h1 class="validationc" id="validation">Something went wrong</h1>
+        </div>
+        <div class="filter-buttons">
+            
+        </div>
+        <div class="body-table" id="userData">
+            <h1 class="loginLabel">Role</h1>
+            <select id="roleSelect" class="input">
+                <option value="">--Please choose Role--</option>
+                <option value="2">User</option>
+                <option value="1">Admin</option>
+            </select> 
+            <h1 class="loginLabel">First Name</h1>
+            <input type="text" class="input" id="firstname"><br>
+            <h1 class="loginLabel">Last Name</h1>
+            <input type="text" class="input" id="lastname"><br>
+            <h1 class="loginLabel">Nick</h1>
+            <input type="text" class="input" id="nick"><br>
+            <h1 class="loginLabel">Email</h1>
+            <input type="text" class="input" id="email"><br>
+            <h1 class="loginLabel">Password</h1>
+            <input type="password" class="loginInput" id="pass">
+            <h1 class="loginLabel">Confirm Password</h1>
+            <input type="password" class="loginInput" id="confirmPass">
+            <div><button type="button" class="down-save-button" id="createUser">Create</button></div>
+            <div><button type="button" class="down-back-button" id="backToUsers">Cancel</button></div>
+            
+        </div>
+        </table>
+    </div>
+    <div class="footer">
+    </div>
+    </div>
+   
+<script src="usercreate.js"></script>
+<script src="header.js"></script>
+</body>
+</html>

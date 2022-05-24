@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+<div id="root" class="company-root">
+    <div class="header">
+        <div class="logo">
+            <a href="dashboard.html"><img src="img/logo.jpg" class="logo" id="logo"></a>
+        </div>
+        <div class="header-tabs">
+            <div><button type="button" class="header-tabs-button" id="user">Users</button></div>
+            <div><button type="button" class="header-tabs-button" id="project">Projects</button></div>
+            <div><button type="button" class="header-tabs-button" id="company">Company</button></div>
+            <div><button type="button" class="header-tabs-button" id="group">Group</button></div>
+            <a><img src="img/magnifier.svg" class="img-magnifier" ><input type="text" class="header-search" id="search" ></a>
+            <img src="img/user.png" class="header-user" id="userClick">
+            <div id="myAccount"></div>
+        </div>
+        <div class="separate"></div>
+    </div>
+    <div class="body">
+        <div class="page-title"><label class="title-page" id="pageTitleWithGroupName">Edit Group</label> <h1 class="validationc" id="validation">Something went wrong</h1>
+        </div>
+        <div class="filter-buttons"> 
+            
+        </div>
+        <div class="body-data" id="groupData">
+            <h1 class="loginLabel">Id</h1>
+            <input type="text" class="input-id" id="id" disabled="true">
+            <label class="checkbox-label" for="active" >Active</label>
+            <input type="checkbox" id="active" class="checkbox-active"><br>
+            <h1 class="loginLabel">Status</h1>
+            <select id="statusSelect" class="input">
+                <option value="">--Please choose Status--</option>
+                <option value="1">Draft</option>
+                <option value="2">Production</option>
+            </select> 
+            <h1 class="loginLabel">Hours Period</h1>
+            <input type="text" class="input" id="hoursPeriod"><br>
+            <h1 class="loginLabel">Start Course Date</h1>
+            <input type="text" class="input" id="startCourseDate"><br>
+            <h1 class="loginLabel">Type</h1>
+            <select id="typeSelect" class="input">
+                <option value="">--Please choose Type--</option>
+                <option value="1">Private</option>
+                <option value="2">Public</option>
+            </select> 
+            <h1 class="loginLabel">Project</h1>
+            <div id="projectsList">
+            <select id="parentProject" class="input" disabled="true" >
+            </select> 
+        </div>
+            <h1 class="loginLabel">Group Name</h1>
+            <input type="text" class="input" id="groupName"><br>
+            <h1 class="loginLabel">Group Description</h1>
+            <textarea id="description" class="textarea-input" name="story" rows="5" cols="33"></textarea>
+            <div><button type="button" class="down-save-button" id="saveGroup">Save</button></div>
+            <div><button type="button" class="down-back-button" id="backToGroups">Cancel</button></div>
+        </div>
+        <div class="body-right">
+            <div class="group-buttons">
+                <button type="button" class="title-group-button" id="calendar">Calendar</button>
+                <button type="button" class="title-group-button" id="abiturients">Abiturients</button>
+                <button type="button" class="title-group-button" id="changeLog">Change Log</button>
+            </div>
+            <div id="calendar">
+                <h2 class="groupcalendarlabel" id="topTitle">Group calendar</h2><button type="button" class="group-calendar-manage-button" id="manageCalendar">Manage</button><button type="button" class="subtitle-assign-button2" id="backToEditcalendar">Back</button>
+                <div id="groupcalendarData"></div>
+            </div>
+    </div>
+    </div>
+    <div class="footer">
+    </div>
+    </div>
+<script src="groupedit.js"></script>
+<script src="header.js"></script>
+</body>
+</html>

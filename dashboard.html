@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+<div id="root" class="dash-root">
+    <div class="header">
+        <div class="logo">
+            <a href="dashboard.html"><img src="img/logo.jpg" class="logo" id="logo"></a>
+        </div>
+        <div class="header-tabs">
+            <div><button type="button" class="header-tabs-button" id="user">Users</button></div>
+            <div><button type="button" class="header-tabs-button" id="project">Projects</button></div>
+            <div><button type="button" class="header-tabs-button" id="company">Company</button></div>
+            <div><button type="button" class="header-tabs-button" id="group">Group</button></div>
+            <a><img src="img/magnifier.svg" class="img-magnifier" ><input type="text" class="header-search" id="search" ></a>
+            <img src="img/user.png" class="header-user" id="userClick">
+            <div id="myAccount"></div>
+        </div>
+        <div class="separate"></div>
+    </div>
+    <div class="body">
+        
+        <div class="cards">
+            <a id="cardUser"><div class="card1" id="card1">
+                <br><br>
+                <label class="card-label">active users</label>
+                <img src="img/people.png" class="peolpe-icon" id="peoplecard">
+                <label class="card-value">400</label>   <br>
+                <img src="img/arrowDown.png" class="arrow-icon">
+                <label class="card-result-num">20</label>
+                <label class="card-result">Since last month</label>
+            </div></a>
+            <a id="cardProject"><div class="card1" id="card2">
+            <br><br>
+                <label class="card-label">active Projects </label>
+                <img src="img/people.png" class="peolpe-icon" id="projectcard">
+                <label class="card-value">6</label>   <br>
+                <img src="img/arrowDown.png" class="arrow-icon">
+                <label class="card-result-num">2</label>
+                <label class="card-result">Since last month</label>
+            </div> </a>
+            <a id="cardCompany"><div class="card1"  id="card3">
+                <br><br>
+                    <label class="card-label">active companies </label>
+                    <img src="img/people.png" class="peolpe-icon" id="companycard">
+                    <label class="card-value">70</label>   <br>
+                    <img src="img/arrowDown.png" class="arrow-icon">
+                    <label class="card-result-num">4</label>
+                    <label class="card-result">Since last month</label>
+                </div></a>
+                <a id="cardGroup"><div class="card1"  id="card4">
+                <br><br>
+                    <label class="card-label">active groups </label>
+                    <img src="img/people.png" class="peolpe-icon" id="groupuser">
+                    <label class="card-value">27</label>   <br>
+                    <img src="img/arrowDown.png" class="arrow-icon">
+                    <label class="card-result-num">1</label>
+                    <label class="card-result">Since last month</label>
+                </div></a>
+        
+        </div>
+                <div class="body-chart">
+            <img src="img/chartDashboard.jpg" class="chart-img" id="chart">
+        </div>
+        <div class="footer">
+        </div>
+</div>
+<script src="dashboard.js"></script>
+<script src="header.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+<div id="root" class="projects-root">
+    <div class="header">
+        <div class="logo">
+            <a href="dashboard.html"><img src="img/logo.jpg" class="logo" id="logo"></a>
+        </div>
+        <div class="header-tabs">
+            <div><button type="button" class="header-tabs-button" id="user">Users</button></div>
+            <div><button type="button" class="header-tabs-button" id="project">Projects</button></div>
+            <div><button type="button" class="header-tabs-button" id="company">Company</button></div>
+            <div><button type="button" class="header-tabs-button" id="group">Group</button></div>
+            <a><img src="img/magnifier.svg" class="img-magnifier" ><input type="text" class="header-search" id="search" ></a>
+            <img src="img/user.png" class="header-user" id="userClick">
+            <div id="myAccount"></div>
+        </div>
+        <div class="separate"></div>
+    </div> 
+    <div class="body">
+        <div class="page-title"><label class="title-page">Projects</label>
+        </div>
+        <div class="filter-buttons">
+            <div><button type="button" class="title-filter-button-projects" id="filteractive">Active</button></div>
+            <div><button type="button" class="title-filter-button-projects" id="filterDeleted">Deleted</button></div>
+            <div><button type="button" class="title-filter-button-projects" id="filterall">All</button></div>
+            <div><button type="button" class="create-button" id="createProject">Create</button></div>
+        </div>
+        <div class="body-table" id="projectsTable">
+        </div>
+        </table>
+    </div>
+    <div class="footer">
+    </div>
+    </div>
+   
+<script src="projects.js"></script>
+<script src="header.js"></script>
+</body>
+</html>

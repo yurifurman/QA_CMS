@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+<div id="root" class="users-root-1">
+    <div class="header">
+        <div class="logo">
+            <a href="dashboard.html"><img src="img/logo.jpg" class="logo" id="logo"></a>
+        </div>
+        <div class="header-tabs">
+            <div><button type="button" class="header-tabs-button" id="user">Users</button></div>
+            <div><button type="button" class="header-tabs-button" id="project">Projects</button></div>
+            <div><button type="button" class="header-tabs-button" id="company">Company</button></div>
+            <div><button type="button" class="header-tabs-button" id="group">Group</button></div>
+            <a><img src="img/magnifier.svg" class="img-magnifier" ><input type="text" class="header-search" id="search" ></a>
+            <img src="img/user.png" class="header-user" id="userClick">
+            <div id="myAccount"></div>
+        </div>
+        <div class="separate"></div>
+    </div>
+    <div class="body"> 
+        <div class="page-title"><label class="title-page" id="pageTitleWithUserName">Edit User</label> <h1 class="validationc" id="validation">Something went wrong</h1>
+        </div>
+        <div class="filter-buttons">
+             
+        </div>
+        <div class="body-table" id="userData">
+            <h1 class="loginLabel">Id</h1>
+            <input type="text" class="input-id" id="id" disabled="true">
+            <label class="checkbox-label" for="active" >Active</label>
+            <input type="checkbox" id="active" class="checkbox-active"><br>
+            <h1 class="loginLabel">Last Activity</h1>
+            <Input type="text" class="loginInput" id="activitydate" disabled="true"><br>
+            <h1 class="loginLabel">Status</h1>
+            <select id="selectStatus" class="loginInput"  disabled="true">
+                <option value="">--Please choose Status--</option>
+                <option value="0">Need Email Confirmation</option>
+                <option value="1">Active</option>
+            </select>
+            <h1 class="loginLabel">Role</h1>
+            <select id="selectRole" class="input">
+                <option value="">--Please choose Status--</option>
+                <option value="2">User</option>
+                <option value="1">Admin</option>
+            </select>
+            <h1 class="loginLabel">First Name</h1>
+            <input type="text" class="input" id="firstname"><br>
+            <h1 class="loginLabel">Last Name</h1>
+            <input type="text" class="input" id="lastname"><br>
+            <h1 class="loginLabel">Nick</h1>
+            <input type="text" class="input" id="nick"><br>
+            <h1 class="loginLabel">Email</h1>
+            <input type="text" class="input" id="email">
+            <div><button type="button" class="down-save-button" id="saveUser">Save</button></div>
+            <div><button type="button" class="down-back-button" id="backToUsers">Cancel</button></div>
+        </div>
+        <div class="body-right">
+            <div class="user-buttons">
+                <button type="button" class="title-user-button" id="relations">Relations</button>
+                <button type="button" class="title-user-button" id="contracts">Contracts</button>
+                <button type="button" class="title-user-button" id="changeLog">Change Log</button>
+            </div>
+            <div id="assProject">
+                <h2 class="userProjectslabel" id="topTitle">User Projects</h2><button type="button" class="user-project-assign-button" id="projectAssign">Assign</button><button type="button" class="subtitle-assign-button2" id="backToEditP">Back</button>
+                <div id="userProjectsData"></div>
+            </div>
+            <div id="assCompany">
+                <h2 class="userCompanieslabel">User Companies</h2><button type="button" class="user-company-assign-button" id="companyAssign">Assign</button><button type="button" class="subtitle-assign-button2" id="backToEditC">Back</button>
+                <div id="userCompaniesData"></div>
+            </div>
+            <div id="assGroup">
+                <h2 class="userGroupslabel">User Groups</h2><button type="button" class="user-group-assign-button" id="groupAssign">Assign</button><button type="button" class="subtitle-assign-button2" id="backToEditG">Back</button>
+                <div id="userGroupsData"></div>
+            </div>
+    </div>
+</div>
+    <div class="footer">
+    </div>
+
+</div>
+<script src="useredit.js"></script>
+<script src="header.js"></script>
+</body>
+</html>
