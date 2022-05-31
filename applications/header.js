@@ -57,33 +57,33 @@ searchInput.addEventListener('mouseleave', function(){
 }) 
 
 userButton.addEventListener('click', function(){
-    window.location.href = 'users.html';
+    window.location.href = '../users.html';
     userButton.style.background = "#aac5d3";
     userButton.style.border = '1px solid #000000';
 }) 
 
 companyButton.addEventListener('click', function(){
-    window.location.href = 'companies.html';
+    window.location.href = '../companies.html';
     userButton.style.background = "#aac5d3";
     userButton.style.border = '1px solid #000000';
 }) 
 
+applicationButton.addEventListener('click', function(){
+    window.location.href = '../applications.html';
+    applicationButton.style.background = "#aac5d3";
+    applicationButton.style.border = '1px solid #000000';
+}) 
+
 projectButton.addEventListener('click', function(){
-    window.location.href = 'projects.html';
+    window.location.href = '../projects.html';
     userButton.style.background = "#aac5d3";
     userButton.style.border = '1px solid #000000';
 }) 
 
 groupsButton.addEventListener('click', function(){
-    window.location.href = 'groups.html';
+    window.location.href = '../groups.html';
     groupsButton.style.background = "#aac5d3";
     groupsButton.style.border = '1px solid #000000';
-}) 
-
-applicationButton.addEventListener('click', function(){
-    window.location.href = 'applications.html';
-    applicationButton.style.background = "#aac5d3";
-    applicationButton.style.border = '1px solid #000000';
 }) 
 
 userClick.addEventListener('click', function(){
@@ -107,40 +107,15 @@ myAccount.addEventListener('change', function(){
             console.log('0')
             menuDisplaying = false;
             myAccount.innerHTML = '';
-            getUserId();
+            window.location.href = '../account.html';
           break;
         case '1':
             console.log('1')
             menuDisplaying = false;
             myAccount.innerHTML = '';
-            window.location.href = 'login.html';
+            window.location.href = '../login.html';
           break;  
         default:
           break;
 }
 })
-
-var token = JSON.parse(localStorage.getItem('token'))
-
-async function getUserId() {
-    const user = await getData('https://qa-platform.severnyded.tech/api/auth/me', token);
-    var userId = user.user.id
-    urlForRedirect = 'useredit.html?userId=' + userId
-    window.location.href = urlForRedirect;
-}
-
-
-async function getData(url = '', token = '') {
-    const response = await fetch(url, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: token ? {
-        'Authorization': 'Bearer ' + token
-      } : {},
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *client
-    })
-    return await response.json();
-  }

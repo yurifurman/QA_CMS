@@ -41,6 +41,7 @@ var changeGroupObj = {
     item: {
         id: '',
         name: '',
+        description: '',
         type: '',
         status: '',
         projectId: '',
@@ -59,7 +60,7 @@ async function getAndShowGroupData() {
         id.value = group.item[key]
         break;
       case 'status':
-        statusId.value = group.item[key]
+        statusId.value = group.item[key] 
         break;  
       case 'type':
         typeId.value = group.item[key]
@@ -126,6 +127,7 @@ async function viewData(project){
 saveGroup.addEventListener('click', function () {
   if (true) {
     changeGroupObj.item.name = groupName.value;
+    changeGroupObj.item.description = description.value;
     changeGroupObj.item.id = id.value;
     changeGroupObj.item.type = typeId.value;
     changeGroupObj.item.status = statusId.value;

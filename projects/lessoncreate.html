@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Document</title>
+</head>
+<body>
+<div id="root" class="lesson-create-root">
+    <div class="header">
+        <div class="logo">
+            <a href="../dashboard.html"><img src="../img/logo.jpg" class="logo" id="logo"></a>
+        </div>
+        <div class="header-tabs">
+            <div><button type="button" class="header-tabs-button" id="user">Users</button></div>
+            <div><button type="button" class="header-tabs-button" id="project">Projects</button></div>
+            <div><button type="button" class="header-tabs-button" id="company">Company</button></div>
+            <div><button type="button" class="header-tabs-button" id="group">Group</button></div>
+            <div><button type="button" class="header-tabs-button" id="applicationHeader">Application</button></div>
+            <a><img src="../img/magnifier.svg" class="img-magnifier" ><input type="text" class="header-search" id="search" ></a>
+            <img src="../img/user.png" class="header-user" id="userClick">
+            <div id="myAccount"></div>
+        </div>
+        <div class="separate"></div>
+    </div>
+    <div class="body">
+        <div class="page-title"><label class="title-page">Create Lesson</label> <h1 class="validationc" id="validation">Something went wrong</h1>
+        </div>
+        <div class="filter-buttons">
+            
+        </div>
+        <div class="body-table" id="lessonData">
+            <h1 class="loginLabel">Order</h1>
+            <input type="text" class="input" id="order"><br>
+            <h1 class="loginLabel">Type</h1>
+            <select id="typeSelect" class="input">
+                <option value="">--Please choose Type--</option>
+                <option value="1">Private</option>
+                <option value="2">Publick</option>
+            </select> 
+            <h1 class="loginLabel">Duration</h1>
+            <input type="text" class="input" id="duration"><br>
+            <h1 class="loginLabel">App Version</h1>
+            <select id="versionSelect" class="input">
+                <option value="">--Please choose App Version--</option>
+                <option value="1">demo1</option>
+                <option value="2">demo2</option>
+            </select> 
+            <h1 class="loginLabel">Lesson Name</h1>
+            <input type="text" class="input" id="name"><br>
+            <h1 class="loginLabel">Lesson Description</h1>
+            <textarea id="description" class="textarea-input" name="story" rows="5" cols="33"></textarea>
+            <h1 class="loginLabel">Lesson Markup</h1>
+            <textarea id="markup" class="textarea-input" name="story" rows="5" cols="33"></textarea>
+            <h1 class="loginLabel">TEMP Project TEMP</h1>
+            <div id="projectsList">
+                <select id="parentProject" class="input" disabled="true" >
+                </select> 
+        </div>
+            <div><button type="button" class="down-save-button" id="createLesson">Create</button></div>
+            <div><button type="button" class="down-back-button" id="backToLessons">Cancel</button></div>
+            
+        </div>
+        </table>
+    </div>
+    <div class="footer">
+    </div>
+    </div>
+   
+<script src="lessoncreate.js"></script>
+<script src="header.js"></script>
+</body>
+</html>

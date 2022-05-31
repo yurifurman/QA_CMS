@@ -1,7 +1,7 @@
 var headerProjectUsersTableArray = ['<table width="750 px" border="1">', '<th>Id</th>', '<th>Full Name</th>', '<th>Email</th>', '<th>Active</th>', '<th>Action</th>', '</tr>']
 var projectUsersTableArray = ['<tr>',1,2,3,4,5,6,'</tr>']
 var headerProjectCompaniesTableArray = ['<table width="750 px" border="1">', '<th>Id</th>', '<th>Company Name</th>', '<th>Status</th>', '<th>Action</th>', '</tr>']
-var projectCompaniesTableArray = ['']
+var projectCompaniesTableArray = ['<tr>',,2,,,,,'</tr>']
 var headerProjectGroupsTableArray = ['<table width="750 px" border="1">', '<th>Id</th>', '<th>Group Name</th>', '<th>Status</th>', '<th>Action</th>', '</tr>']
 var projectGroupsTableArray = ['']
 
@@ -12,14 +12,17 @@ var projectUsersIds = []
 var userIdsTemp = []
 var projecCompanyIds = []
 var companyIdsTemp = []
+var projecApplicationIds = []
+var applicationIdsTemp = []
 var projecGroupIds = []
 var groupIdsTemp = []
 
 var assignUserUrl = 'https://qa-platform.severnyded.tech/api/projects/users/'
 var assignCompanyUrl = 'https://qa-platform.severnyded.tech/api/companies/projects/'
+var projectApplicationUrl = 'https://qa-platform.severnyded.tech/api/applications/projects/'
 //var assignGroupUrl = 'https://qa-platform.severnyded.tech/api/groups/users/'
-var assignUrlPartTwo = '/assign'
 
+var bodyId = document.querySelector('#bodyId')
 
 var userSectionDiv =document.querySelector('#assUser')
 var companySectionDiv =document.querySelector('#assCompany')
@@ -27,6 +30,9 @@ var groupSectionDiv =document.querySelector('#assGroup')
 var usersDiv = document.querySelector('#projectUsersData')
 var companiesDiv = document.querySelector('#projectCompaniesData')
 var groupsDiv = document.querySelector('#projectGroupsData')
+var lessonsBtn = document.querySelector('#lessons')
+var applicationBtn = document.querySelector('#application')
+
 
 var assignUserBtn = document.querySelector('#userAssign')
 var backToUserAssignBtn = document.querySelector('#backToEditP')
@@ -39,6 +45,7 @@ var id = document.getElementById('id')
 var active = document.getElementById('active')
 var description = document.getElementById('description')
 var lastSubscribeDate = document.getElementById('subscribeDate')
+var priceDiv = document.getElementById('priceDiv')
 var statusId = document.getElementById('statusSelect')
 var typeId = document.getElementById('typeSelect')
 var paidId = document.getElementById('paidSelect')
@@ -76,6 +83,17 @@ var changeProjectObj = {
 getAndShowProjectData();
 
 //************************************************ G E N E R A L ***************************************************
+paidId.addEventListener('change', function(){
+  // alert('sdfdsa')
+   //console.log(userMenu.value)
+if (paidId.value != 1){
+  priceDiv.innerHTML = ''
+  changeProjectObj.item.price = null;
+}
+else{
+  priceDiv.innerHTML = '<h1 class="loginLabel">Price</h1><input type="text" class="input" id="price"><br>'
+}
+}) 
 
 async function getAndShowProjectData() {
   const project = await getData(getProjectUrl + projectId, token);
@@ -104,13 +122,24 @@ async function getAndShowProjectData() {
         break;
       case 'name': 
         labelPage.innerHTML = 'Edit ' + project.item[key] + ' project'
+        changeProjectObj.item.name = project.item[key]
         projectName.value = project.item[key]
         break;
       case 'description':
         description.value = project.item[key]
         break;
       case 'price':
-        price.value = project.item[key]
+        if(project.item[key] != null){
+          priceDiv.innerHTML = '<h1 class="loginLabel">Price</h1><input type="text" class="input" id="price"><br>'
+          var priceField = document.getElementById('price')
+          paidId.value = 1
+          priceField.value = project.item[key]
+          }
+        else{
+          priceDiv.innerHTML = ''
+          paidId.value = 2
+          }
+        
         break;
       case 'deletedAt':
         if(project.item[key] == null){
@@ -148,13 +177,16 @@ async function getData(url = '', token = '') {
 
 saveProject.addEventListener('click', function () {
   if (true) {
+    var priceF = document.getElementById('price')
+    if(priceF != null){
+      changeProjectObj.item.price = priceF.value;
+    }
     changeProjectObj.item.name = projectName.value;
     changeProjectObj.item.type = parseInt(typeId.value);
     changeProjectObj.item.status = parseInt(statusId.value);
     console.log(changeProjectObj.item.type)
-    changeProjectObj.item.price = parseInt(price.value);
     changeProjectObj.item.description = description.value;
-    postEditedProjectData(getProjectUrl + projectId, changeProjectObj.item, 'PUT')
+   postEditedProjectData(getProjectUrl + projectId, changeProjectObj.item, 'PUT')
       .then((data) => {
         resp = data
         if (resp.message) {
@@ -176,6 +208,24 @@ backToProjects.addEventListener('click', function () {
     window.location.href = 'projects.html';
   }
 })
+
+lessons.addEventListener('click', function () {
+
+window.location.href = 'projects/lessons.html?projectid=' + projectId;
+})
+
+applicationBtn.addEventListener('click', function () {
+
+  applicationIdsTemp =[]; 
+  userSectionDiv.innerHTML = '<h2 class="userProjectslabel">Project Application</h2><button type="button" class="subtitle-assign-buttonC1" id="companyAssign" style="visibility:hidden">Assign</button><button type="button" class="subtitle-assign-buttonC" id="backToProjectA" visibility="visible">Back</button><div id="applicationsProjectData"></div>'
+   backToProjectBtn = document.querySelector('#backToProjectA')
+   backToProjectBtn.style.visibility = 'visible'
+   backToProjectBtn.onclick = () =>window.location.href = 'projectedit.html?projectid='+ projectId;
+   assignComapnyBtn.style.visibility = 'hidden'
+   companySectionDiv.innerHTML = ''
+   groupSectionDiv.innerHTML = ''
+   //getAndShowAvailableCompanies()
+ })
 
 active.addEventListener('change', function () {
 
@@ -255,16 +305,14 @@ async function postEditedProjectData(url, data, methodType) {
   return await response.json();
 }
 
-async function assignOrUnassignRelationsForProject(url, assignItemId = '', unassignItemId = '', methodType ,userId){
-  console.log(userId)
+async function assignOrUnassignRelationsForProject(url, assignItemId = '', unassignItemId = '', methodType){
   if (confirm("Shure ?")) {
     var data = {
       "assign": assignItemId!==null? [assignItemId] : [],
       "unassign": unassignItemId!==null? [unassignItemId] : [],
     }
-    await postData(url + userId + assignUrlPartTwo, data, methodType);
+    await postData(url, data, methodType);
     if(assignItemId !== null){
-      projectUsersIds.push(userId)
     }
     else{
 
@@ -326,7 +374,7 @@ function getUsersData(users){
  if(user.role === 'ADMIN'){
   projectUsersTableArray.push('<td></td><td></td><td></td><td></td><td></td></tr>')
  } else{
-  let unassignUser = `<button onclick="assignOrUnassignRelationsForProject('${assignUserUrl}', null, ${projectId}, 'POST', ${users.id})">`;
+  let unassignUser = `<button onclick="assignOrUnassignRelationsForProject('${assignUserUrl}${users.id}/assign/', null, ${projectId}, 'POST')">`;
   projectUsersTableArray.splice(6,1,'<td>'  + unassignUser + 'Unassign' + '</td>')
 }
 }
@@ -335,8 +383,7 @@ assignUserBtn.addEventListener('click', function () {
   assignUserBtn.style.visibility = 'hidden'
   backToUserAssignBtn.style.visibility = 'visible'
   backToUserAssignBtn.onclick = () =>window.location.href = 'projectedit.html?projectid='+ projectId;
-  userDataTemp=[];
-  insertUsersData = userDataTemp;
+  insertUsersData = [];
   companySectionDiv.innerHTML = ''
   groupSectionDiv.innerHTML = ''
   getAndShowAvailableUsers()
@@ -406,7 +453,7 @@ function getAvailableForAssignUsers(users){
   
 
 if(checkIdOrNot){
-  let assignUser = `<button onclick="assignOrUnassignRelationsForProject('${assignUserUrl}', ${projectId}, null, 'POST', ${users.id})">`;
+  let assignUser = `<button onclick="assignOrUnassignRelationsForProject('${assignUserUrl}${users.id}/assign/', ${projectId}, null, 'POST')">`;
   projectUsersTableArray.splice(6,1,'<td>'  + assignUser + 'Assign' + '</td></tr>')
 }
 }
@@ -416,18 +463,20 @@ if(checkIdOrNot){
 async function getAndShowProjectCompaniesData() {
   const companies = await getData(getProjectCompaniesUrl + projectId, token);
   for(var i=0; i < companies.items.length; i++){
+    console.log(companies.items.length)
       getCompaniesData(companies.items[i])
-      if(projectCompaniesTableArray[6] == 6){
+      if(projectCompaniesTableArray[2] == 2){
       }else{
       const companyDataTemp = projectCompaniesTableArray.join(' ')
       insertCompaniesData.push(companyDataTemp)
-      projectCompaniesTableArray = ['<tr>',1,2,3,4,5,6,'</tr>']
+      projectCompaniesTableArray = ['<tr>',,2,,,,,'</tr>']
       }
    
   }
 var tableCompany = headerProjectCompaniesTableArray.join(' ')
 var projectCompaniesData = insertCompaniesData.join(' ')
 companiesDiv.innerHTML = tableCompany + projectCompaniesData;
+insertCompaniesData=[]
 }
 
 function getCompaniesData(company){
@@ -450,110 +499,77 @@ function getCompaniesData(company){
       
       break;
     default:
-     // projectUsersTableArray.push('<td>' + users[key] + '</td>')
       break;
   }
  }
  if(user.role === 'ADMIN'){
   projectCompaniesTableArray.push('<td></td><td></td><td></td><td></td><td></td></tr>')
  } else{
-  let unassignUser = `<button onclick="assignOrUnassignRelationsForProject('${assignCompanyUrl} + /assign/', null, ${projectId}, 'POST', ${company.id})">`;
-  projectUsersTableArray.splice(4,1,'<td>'  + unassignUser + 'Unassign' + '</td>')
+  let unassignCompany = `<button onclick="assignOrUnassignRelationsForProject('${assignCompanyUrl}${projectId}/assign/', null, ${company.id}, 'POST')">`;
+  projectCompaniesTableArray.splice(4,1,'<td>'  + unassignCompany + 'Unassign' + '</td>')
 }
 }
 
-assignUserBtn.addEventListener('click', function () {
-  assignUserBtn.style.visibility = 'hidden'
-  backToUserAssignBtn.style.visibility = 'visible'
-  backToUserAssignBtn.onclick = () =>window.location.href = 'projectedit.html?projectid='+ projectId;
-  userDataTemp=[];
-  insertUsersData = userDataTemp;
+assignComapnyBtn.addEventListener('click', function () {
+
+ companyIdsTemp =[];
+ userSectionDiv.innerHTML = '<h2 class="userProjectslabel">Project Companies</h2><button type="button" class="subtitle-assign-buttonC1" id="companyAssign" style="visibility:hidden">Assign</button><button type="button" class="subtitle-assign-buttonC" id="backToEditC" visibility="visible">Back</button><div id="userProjectsData"></div>'
+  backToCompanyAssignBtn = document.querySelector('#backToEditC')
+  backToCompanyAssignBtn.style.visibility = 'visible'
+  backToCompanyAssignBtn.onclick = () =>window.location.href = 'projectedit.html?projectid='+ projectId;
+  assignComapnyBtn.style.visibility = 'hidden'
   companySectionDiv.innerHTML = ''
   groupSectionDiv.innerHTML = ''
-  getAndShowAvailableUsers()
+  getAndShowAvailableCompanies()
 })
 
-async function getAndShowAvailableUsers() {
-  const users = await getData(availForAssUserUrl, token);
-  for(var i=0; i < users.items.length; i++){
-    getAvailableForAssignUsers(users.items[i])
-    if(projectUsersTableArray[6] == 6){
+async function getAndShowAvailableCompanies() {
+  const companies = await getData(availForAssCompUrl, token);
+  for(var i=0; i < companies.items.length; i++){
+    getAvailableForAssignCompanies(companies.items[i])
+    if(projectCompaniesTableArray[2] == 2){
     }else{
-    const userDataTemp = projectUsersTableArray.join(' ')
-    insertUsersData.push(userDataTemp)
-    projectUsersTableArray = ['<tr>',1,2,3,4,5,6,'</tr>']
+    const companyDataTemp = projectCompaniesTableArray.join(' ')
+    insertCompaniesData.push(companyDataTemp)
+    projectCompaniesTableArray = ['<tr>',,2,,,,]
     }
  
-  }
-var tableUser = headerProjectUsersTableArray.join(' ')
-var avUserData = insertUsersData.join(' ')
-usersDiv.innerHTML = tableUser + avUserData;
 }
+var tableCompany = headerProjectCompaniesTableArray.join(' ')
+var projectCompaniesData = insertCompaniesData.join(' ')
+var usersDiv28 = document.querySelector('#userProjectsData')
+console.log(tableCompany + projectCompaniesData)
+usersDiv28.innerHTML = tableCompany + projectCompaniesData;
+insertCompaniesData=[]
 
-function getAvailableForAssignUsers(users){
+function getAvailableForAssignCompanies(company){
 
-  for(let key in users){
-    if(projectUsersIds.includes(users.id)){
-      var checkIdOrNot = false
-      
+  for(let key in company){
+    if(projecCompanyIds.includes(company.id)){
+      break;
     }
     else{
-      var checkIdOrNot = true
-
-    }
-    if(checkIdOrNot){
-
-      //var checkIdOrNot = true
       switch(key){
-      case 'id':
-        projectUsersTableArray.splice(1, 1,'<td>' + users[key] + '</td>')
-        break;
-      case 'firstName':
-        projectUsersTableArray.splice(2, 1, '<td>' + users[key])
-        break;
-      case 'lastName':
-        projectUsersTableArray.splice(3, 1, users[key] + '</td>')
-        break;
-      case 'email':
-        projectUsersTableArray.splice(4, 1,'<td>' + users[key] + '</td>')
-        break;
-      case 'deletedAt':
-        if(user[key] == null){
-          projectUsersTableArray.splice(5,1,'<td>Yse</td>')
-          }
-        else{
-          projectUsersTableArray.splice(5,1,'<td>No</td>')
-          }
-        break;
-      default:
-        break;
+        case 'id':
+          projectCompaniesTableArray.splice(1, 1,'<td>' + company[key] + '</td>')
+          let assignCompany = `<button onclick="assignOrUnassignRelationsForProject('${assignCompanyUrl}${projectId}/assign/', ${company.id}, null, 'POST')">`;
+          projectCompaniesTableArray.splice(4,1,'<td>'  + assignCompany + 'Assign' + '</td></tr>')
+          break;
+        case 'name':
+          projectCompaniesTableArray.splice(2, 1, '<td>' + company[key])
+          break;
+        case 'status':
+          if(company[key] == '1'){
+            projectCompaniesTableArray.splice(3, 1, '<td> Draft </td>')
+            }
+          else{
+            projectCompaniesTableArray.splice(3, 1, '<td> Ready </td>')
+            }
+          break;
+        default:
+          break;
+        }
       }
     }
-      else{
-        break;
-      }
-
-    }
-  
-
-if(checkIdOrNot){
-  let assignUser = `<button onclick="assignOrUnassignRelationsForProject('${assignUserUrl}', ${projectId}, null, 'POST', ${users.id})">`;
-  projectUsersTableArray.splice(6,1,'<td>'  + assignUser + 'Assign' + '</td></tr>')
+  }
 }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

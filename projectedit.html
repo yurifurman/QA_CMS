@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="root" class="project-root">
-    <div class="header">
+    <div class="header"> 
         <div class="logo">
             <a href="dashboard.html"><img src="img/logo.jpg" class="logo" id="logo"></a>
         </div>
@@ -18,19 +18,21 @@
             <div><button type="button" class="header-tabs-button" id="project">Projects</button></div>
             <div><button type="button" class="header-tabs-button" id="company">Company</button></div>
             <div><button type="button" class="header-tabs-button" id="group">Group</button></div>
+            <div><button type="button" class="header-tabs-button" id="applicationHeader">Application</button></div>
             <a><img src="img/magnifier.svg" class="img-magnifier" ><input type="text" class="header-search" id="search" ></a>
             <img src="img/user.png" class="header-user" id="userClick">
             <div id="myAccount"></div>
         </div>
         <div class="separate"></div>
     </div>
-    <div class="body">
-        <div class="page-title"><label class="title-page" id="pageTitleWithProjectName">Edit Project</label> <h1 class="validationc" id="validation">Something went wrong</h1>
-        </div>
-        <div class="filter-buttons"> 
+    <div class="body" id="bodyId">
+        <div id="bodyId">
+            <div class="page-title"><label class="title-page" id="pageTitleWithProjectName">Edit Project</label> <h1 class="validationc" id="validation">Something went wrong</h1>
+            </div>
+         <div class="filter-buttons"> 
             
-        </div>
-        <div class="body-data" id="projectData">
+            </div>
+            <div class="body-data" id="projectData">
             <h1 class="loginLabel">Id</h1>
             <input type="text" class="input-id" id="id" disabled="true">
             <label class="checkbox-label" for="active" >Active</label>
@@ -52,22 +54,23 @@
             <h1 class="loginLabel">Paid</h1>
             <select id="paidSelect" class="input">
                 <option value="">--Please choose Paid status--</option>
-                <option value="0">Paid</option>
-                <option value="1">Free</option> 
+                <option value="1">Paid</option>
+                <option value="2">Free</option> 
             </select>
-            <h1 class="loginLabel">Price</h1>
-            <input type="text" class="input" id="price"><br>
+            <div id="priceDiv">
+            </div>
             <h1 class="loginLabel">Project Name</h1>
             <input type="text" class="input" id="projectName"><br>
             <h1 class="loginLabel">Project Description</h1>
             <textarea id="description" class="textarea-input" name="story" rows="5" cols="33"></textarea>
             <div><button type="button" class="down-save-button" id="saveProject">Save</button></div>
             <div><button type="button" class="down-back-button" id="backToProjects">Cancel</button></div>
-        </div>
-        <div class="body-right">
+            </div>
+            <div class="body-right">
             <div class="project-buttons">
                 <button type="button" class="title-project-button" id="relations">Relations</button>
-                <button type="button" class="title-project-button" id="contracts">Lessons</button>
+                <button type="button" class="title-project-button" id="lessons">Lessons</button>
+                <button type="button" class="title-project-button" id="application">Application</button>
                 <button type="button" class="title-project-button" id="changeLog">Change Log</button>
             </div>
             <div id="assUser">
@@ -82,8 +85,9 @@
                 <h2 class="projectGroupslabel">Project Groups</h2><button type="button" class="project-group-assign-button" id="groupAssign">Assign</button><button type="button" class="subtitle-assign-button2" id="backToEditG">Back</button>
                 <div id="projectGroupsData"></div>
             </div>
-    </div>
-    </div>
+            </div>
+        </div>
+     </div> 
     <div class="footer">
     </div>
     </div>

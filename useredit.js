@@ -229,7 +229,7 @@ async function deleteUser() {
         if (resp.message) {
           validation.textContent = resp.message
           validation.style.visibility = 'visible';
-        }
+        } 
         location.reload();
       })
 }
@@ -474,10 +474,8 @@ async function getAvailableForAssignCompanies(companies){
   for(let key in companies){
     if(userCompanyIds.includes(companies.id))
     {
-      var checkIdOrNot = false
       break;
     }else{
-      var checkIdOrNot = true
       switch(key){
         case 'id':
           //userCompanyIds.push(companies[key])

@@ -92,7 +92,12 @@ async function viewData(project){
           }
         break; 
       case 'price':
+        console.log(project.price)
+        if(project.price != null){
         projectDataTable.splice(7, 1, '<td>' + project[key] + '</td>')
+      }else{
+        projectDataTable.splice(7, 1, '<td>' + 'Free' + '</td>')
+      }
         break;
       case 'updatedAt':
         var datetrim = project[key];
@@ -144,7 +149,12 @@ async function viewData(project){
           }
         break; 
       case 'price':
+        console.log(project.price)
+        if(project.price != null){
         projectDataTable.splice(7, 1, '<td>' + project[key] + '</td>')
+      }else{
+        projectDataTable.splice(7, 1, '<td>' + 'Free' + '</td>')
+      }
         break;
       case 'deletedAt':
         var deleteDatetrim = project[key];

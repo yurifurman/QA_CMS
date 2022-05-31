@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Document</title>
+</head>
+<body>
+<div id="root" class="users-root-1">
+    <div class="header">
+        <div class="logo">
+            <a href="../dashboard.html"><img src="../img/logo.jpg" class="logo" id="logo"></a>
+        </div>
+        <div class="header-tabs">
+            <div><button type="button" class="header-tabs-button" id="user">Users</button></div>
+            <div><button type="button" class="header-tabs-button" id="project">Projects</button></div>
+            <div><button type="button" class="header-tabs-button" id="company">Company</button></div>
+            <div><button type="button" class="header-tabs-button" id="group">Group</button></div>
+            <div><button type="button" class="header-tabs-button" id="applicationHeader">Application</button></div>
+            <a><img src="../img/magnifier.svg" class="img-magnifier" ><input type="text" class="header-search" id="search" ></a>
+            <img src="../img/user.png" class="header-user" id="userClick">
+            <div id="myAccount"></div>
+        </div>
+        <div class="separate"></div>
+    </div>
+    <div class="body"> 
+        <div class="page-title"><label class="title-page" id="pageTitleWithVersionName">Edit Version</label> <h1 class="validationc" id="validation">Something went wrong</h1>
+        </div>
+        <div class="filter-buttons">
+                <div><button type="button" class="create-button-2" id="backToVersions2"> < Back to Versions List</button></div>
+
+        </div>
+        <div class="body-table" id="versionData">
+            <h1 class="loginLabel">Id</h1>
+            <input type="text" class="input-id" id="id"><br>
+            <label class="checkbox-label" for="active" >Active</label>
+            <input type="checkbox" id="active" class="checkbox-active"><br>
+            <h1 class="loginLabel">Application</h1>
+            <div id="appsList" >
+                <select id="parentApp" class="input" disabled="true" >
+                </select> 
+                </div>
+            <h1 class="loginLabel">Status</h1>
+            <select id="statusSelect" class="input">
+                <option value="">--Please choose Status--</option>
+                <option value="1">Draft</option>
+                <option value="2">Ready</option>
+            </select> 
+            <h1 class="loginLabel">URL</h1>
+            <input type="text" class="input" id="url"><br>
+            <h1 class="loginLabel">Version Name</h1>
+            <input type="text" class="input" id="name"><br>
+            <h1 class="loginLabel">Version Description</h1>
+            <textarea id="description" class="textarea-input" name="story" rows="5" cols="33"></textarea>
+            <div><button type="button" class="down-save-button" id="saveVersion">Save</button></div>
+            <div><button type="button" class="down-back-button" id="backToVersions">Cancel</button></div>
+        </div>
+        <div class="body-right">
+            
+    </div>
+</div>
+    <div class="footer">
+    </div>
+
+</div>
+<script src="versionedit.js"></script>
+<script src="header.js"></script>
+</body>
+</html>

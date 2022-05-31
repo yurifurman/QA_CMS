@@ -274,7 +274,7 @@
   height: 48px;
   /* bg */
   padding-left: 40px;
-  margin-left: 240px;
+  margin-left: 150px;
   background: #f3f1f1;
   border: 1px solid #D0D4D9;
   box-sizing: border-box;
@@ -298,7 +298,7 @@
   width: 20px; 
   position:relative;
   top: 34px;
-  left: 250px;
+  left: 160px;
   display: block;
 }
 
@@ -306,7 +306,7 @@
   width: 40px; 
   position:relative;
   top: 10px;
-  left: 170px;
+  left: 110px;
   display: block;
 }
 
@@ -544,6 +544,48 @@
   color: #1b2634;
   }
 
+  .title-filter-button-apps {
+    /* Hover */
+    top: 15px;
+    left: 210px;
+    position: relative;
+    margin-left: 20px;
+    background: #e7f583;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 12px;
+    font-family: 'Mulish-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #1b2634;
+    }
+
+  .title-filter-button-lessons {
+    /* Hover */
+    top: 15px;
+    left: 480px;
+    position: relative;
+    margin-left: 20px;
+    background: #e7f583;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 12px;
+    font-family: 'Mulish-Regular';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #1b2634;
+    }
+  
 
 .user-buttons{
   /* Hover */
@@ -611,7 +653,8 @@
 
 .title-project-button {
   /* Hover */
-  top: 1px;
+  top: -60px;
+  left: -100px;
   position: relative;
   margin-left: 20px;
   background: #e7f583;
@@ -692,6 +735,49 @@
   text-align: center;
   color: #fcfdfd;
   }
+
+  
+.create-button-1 {
+  /* Hover */
+  top: 10px;
+  position: relative;
+  Left: 740px;
+  background: #4c85a2;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 12px;
+  font-family: 'Mulish-Regular';
+  font-style: normal;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #fcfdfd;
+  }
+
+  .create-button-2 {
+    /* Hover */
+    top: 10px;
+    position: relative;
+    Left: 750px;
+    background: #ff0000;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 12px;
+    font-family: 'Mulish-Regular';
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #fcfdfd;
+    }
 
   #myAccount {
     /* Hover */
@@ -1054,6 +1140,16 @@ color: #fcfdfd;
   top: 80px;
 }
 
+#projectCompaniesData{
+  position: absolute;
+  top: 280px;
+}
+
+#projectGroupsData{
+  position: absolute;
+  top: 480px;
+}
+
 #companyUsersData{
   position: absolute;
   top: 80px;
@@ -1203,6 +1299,13 @@ color: #fcfdfd;
   top: 210px;
   width: 1320px;
   }
+
+  #body-tabl-lessons{
+    position: absolute;
+    left: 260px;
+    top: 210px;
+    width: 1320px;
+    }
 
 .body-right{
   position: absolute;

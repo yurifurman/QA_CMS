@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Document</title>
+</head>
+<body>
+<div id="root" class="users-root-1">
+    <div class="header">
+        <div class="logo">
+            <a href="../dashboard.html"><img src="../img/logo.jpg" class="logo" id="logo"></a>
+        </div>
+        <div class="header-tabs">
+            <div><button type="button" class="header-tabs-button" id="user">Users</button></div>
+            <div><button type="button" class="header-tabs-button" id="project">Projects</button></div>
+            <div><button type="button" class="header-tabs-button" id="company">Company</button></div>
+            <div><button type="button" class="header-tabs-button" id="group">Group</button></div>
+            <div><button type="button" class="header-tabs-button" id="applicationHeader">Application</button></div>
+            <a><img src="../img/magnifier.svg" class="img-magnifier" ><input type="text" class="header-search" id="search" ></a>
+            <img src="../img/user.png" class="header-user" id="userClick">
+            <div id="myAccount"></div>
+        </div>
+        <div class="separate"></div>
+    </div>
+    <div class="body"> 
+        <div class="page-title"><label class="title-page" id="pageTitleWithLessonName">Edit Lesson</label> <h1 class="validationc" id="validation">Something went wrong</h1>
+        </div>
+        <div class="filter-buttons">
+                <div><button type="button" class="create-button-2" id="backToLessonsList"> < Back to Lessons List</button></div>
+
+        </div>
+        <div class="body-table" id="lessonData">
+            <h1 class="loginLabel">Id</h1>
+            <input type="text" class="input-id" id="id"><br>
+            <label class="checkbox-label" for="active" >Active</label>
+            <input type="checkbox" id="active" class="checkbox-active"><br>
+            <h1 class="loginLabel">Project</h1>
+            <div id="projectsList" >
+                <select id="parentProject" class="input" disabled="true" >
+                </select> 
+                </div>
+            <h1 class="loginLabel">Order</h1>
+            <input type="text" class="input" id="order"><br>
+            <h1 class="loginLabel">Type</h1>
+            <select id="typeSelect" class="input">
+                <option value="">--Please choose Type--</option>
+                <option value="1">Private</option>
+                <option value="2">Publick</option>
+            </select> 
+            <h1 class="loginLabel">Status</h1>
+            <select id="statusSelect" class="input">
+                <option value="">--Please choose Status--</option>
+                <option value="1">Draft</option>
+                <option value="2">Ready</option>
+            </select> 
+            <h1 class="loginLabel">Duration</h1>
+            <input type="text" class="input" id="duration"><br>
+            <h1 class="loginLabel">App Version</h1>
+            <div id="verList" >
+                <select id="versions" class="input" >
+                </select> 
+                </div>
+            <h1 class="loginLabel">Lesson Name</h1>
+            <input type="text" class="input" id="name"><br>
+            <h1 class="loginLabel">Lesson Description</h1>
+            <textarea id="description" class="textarea-input" name="story" rows="5" cols="33"></textarea>
+            <h1 class="loginLabel">Lesson Markup</h1>
+            <textarea id="markup" class="textarea-input" name="story" rows="5" cols="33"></textarea>
+            <div><button type="button" class="down-save-button" id="saveLesson">Save</button></div>
+            <div><button type="button" class="down-back-button" id="backToLessons">Cancel</button></div>
+        </div>
+        <div class="body-right">
+            
+    </div>
+</div>
+    <div class="footer">
+    </div>
+
+</div>
+<script src="lessonedit.js"></script>
+<script src="header.js"></script>
+</body>
+</html>

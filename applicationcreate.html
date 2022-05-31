@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<div id="root" class="projects-root">
+<div id="root" class="application-root">
     <div class="header">
         <div class="logo">
             <a href="dashboard.html"><img src="img/logo.jpg" class="logo" id="logo"></a>
@@ -24,25 +24,26 @@
             <div id="myAccount"></div>
         </div>
         <div class="separate"></div>
-    </div> 
+    </div>
     <div class="body">
-        <div class="page-title"><label class="title-page">Projects</label>
+        <div class="page-title"><label class="title-page" id="pageTitleWithProjectName">Create Application</label> <h1 class="validationc" id="validation">Something went wrong</h1>
         </div>
-        <div class="filter-buttons">
-            <div><button type="button" class="title-filter-button-projects" id="filteractive">Active</button></div>
-            <div><button type="button" class="title-filter-button-projects" id="filterDeleted">Deleted</button></div>
-            <div><button type="button" class="title-filter-button-projects" id="filterall">All</button></div>
-            <div><button type="button" class="create-button" id="createProject">Create</button></div>
+        <div class="filter-buttons"> 
         </div>
-        <div class="body-table" id="projectsTable">
+        <div class="body-data" id="applicationData">
+            <h1 class="loginLabel">Application Name</h1>
+            <input type="text" class="input" id="appName"><br>
+            <h1 class="loginLabel">Application Description</h1>
+            <textarea id="description" class="textarea-input" name="story" rows="5" cols="33"></textarea>
+            <div><button type="button" class="down-save-button" id="createApp">Create</button></div>
+            <div><button type="button" class="down-back-button" id="backToApp">Cancel</button></div>
         </div>
-        </table>
+    </div>
     </div>
     <div class="footer">
     </div>
     </div>
-   
-<script src="projects.js"></script>
+<script src="applicationcreate.js"></script>
 <script src="header.js"></script>
 </body>
-</html>
+</html> 

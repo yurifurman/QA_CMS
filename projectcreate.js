@@ -1,6 +1,6 @@
-
 var projectName = document.getElementById('projectName')
 var description = document.getElementById('description')
+var priceDiv = document.getElementById('priceDiv')
 var lastSubscribeDate = document.getElementById('subscribeDate')
 var statusId = document.getElementById('statusSelect')
 var typeId = document.getElementById('typeSelect')
@@ -17,20 +17,32 @@ var createProjectObj = {
    // lastSubscribeDate: '',
     type: '',
     //paidId: '',
-    price: '',
+    price: null,
     name: '',
     description: ''
   }
 }
 
 //************************************************ G E N E R A L ***************************************************
+paidId.addEventListener('change', function(){
+  // alert('sdfdsa')
+   //console.log(userMenu.value)
+if (paidId.value != 1){
+  priceDiv.innerHTML = ''
+}
+else{
+  priceDiv.innerHTML = '<h1 class="loginLabel">Price</h1><input type="text" class="input" id="price"><br>'
+}
+})
 
 createProject.addEventListener('click', function () {
     if (true) {
-      
+      var priceF = document.getElementById('price')
+      if(priceF != null){
+        changeProjectObj.item.price = priceF.value;
+      }
       createProjectObj.item.name = projectName.value;
       createProjectObj.item.type = parseInt(typeId.value);
-      createProjectObj.item.price = price.value;
       createProjectObj.item.description = description.value;
       postData(createProjectUrl, createProjectObj.item, 'POST')
         .then((data) => {
@@ -40,7 +52,7 @@ createProject.addEventListener('click', function () {
             validation.textContent = resp.message
             validation.style.visibility = 'visible';
           }
-          else 
+          else  
           {
             var editProjectUrl = 'projectedit.html?projectId=' + resp.item.id
             window.location.href = editProjectUrl

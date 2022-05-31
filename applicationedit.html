@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<div id="root" class="project-root">
+<div id="root" class="application-root">
     <div class="header">
         <div class="logo">
             <a href="dashboard.html"><img src="img/logo.jpg" class="logo" id="logo"></a>
@@ -26,27 +26,39 @@
         <div class="separate"></div>
     </div>
     <div class="body">
-        <div class="page-title"><label class="title-page" id="pageTitleWithProjectName">Create Company</label> <h1 class="validationc" id="validation">Something went wrong</h1>
+        <div class="page-title"><label class="title-page" id="pageTitleWithAppName">Create Application</label> <h1 class="validationc" id="validation">Something went wrong</h1>
         </div>
-        <div class="filter-buttons">
+        <div class="filter-buttons"> 
         </div>
-        <div class="body-data" id="companyData">
-            <h1 class="loginLabel">Company Name</h1>
-            <input type="text" class="input" id="companyName"><br>
-            <h1 class="loginLabel">Company Description</h1>
+        <div class="body-data" id="applicationData">
+            <h1 class="loginLabel">Id</h1>
+            <input type="text" class="input-id" id="id" disabled="true">
+            <label class="checkbox-label" for="active" >Active</label>
+            <input type="checkbox" id="active" class="checkbox-active"><br>
+            <h1 class="loginLabel">Status</h1>
+            <select id="statusSelect" class="input">
+                <option value="">--Please choose Status--</option>
+                <option value="1">Draft</option>
+                <option value="2">Production</option>
+            </select> 
+            <h1 class="loginLabel">Application Name</h1>
+            <input type="text" class="input" id="appName"><br>
+            <h1 class="loginLabel">Application Description</h1>
             <textarea id="description" class="textarea-input" name="story" rows="5" cols="33"></textarea>
-            <h1 class="loginLabel">Company Site</h1>
-            <input type="text" class="input" id="site"><br>
-
-            <div><button type="button" class="down-save-button" id="createCompany">Create</button></div>
-            <div><button type="button" class="down-back-button" id="backToCompanies">Cancel</button></div>
+            <div><button type="button" class="down-save-button" id="saveApp">Save</button></div>
+            <div><button type="button" class="down-back-button" id="backToApp">Cancel</button></div>
         </div>
+        <div class="body-right">
+            <div class="project-buttons">
+                <button type="button" class="title-project-button" id="versions">Versions</button>
+                <button type="button" class="title-project-button" id="changeLog">Change Log</button>
+            </div>
     </div>
     </div>
     <div class="footer">
     </div>
     </div>
-<script src="companycreate.js"></script>
+<script src="applicationedit.js"></script>
 <script src="header.js"></script>
 </body>
-</html>
+</html> 
