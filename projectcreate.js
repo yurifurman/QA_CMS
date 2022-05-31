@@ -39,7 +39,7 @@ createProject.addEventListener('click', function () {
     if (true) {
       var priceF = document.getElementById('price')
       if(priceF != null){
-        changeProjectObj.item.price = priceF.value;
+        createProjectObj.item.price = priceF.value;
       }
       createProjectObj.item.name = projectName.value;
       createProjectObj.item.type = parseInt(typeId.value);
