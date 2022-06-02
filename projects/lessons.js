@@ -1,5 +1,5 @@
 var headerLessons= ['<table width="100%" border="1">', '<th>Id</th>','<th>Order</th>', '<th>Lesson Name</th>','<th>Duration</th>', '<th>Active</th>', '<th>Type</th>','<th>Status</th>','<th>Last Edit</th>','<th>Action</th>','</tr>']
-var lessonsDataTable= ['<tr>', '<td></td>', '<td></td>', '<td></td>','<td></td>', '<td></td>', '<td></td>', '<td></td>', '<td></td>', '</tr>']
+var lessonsDataTable= ['<tr>', , , , , , , , , '</tr>']
 const insertLessonsData = []
 
 var div = document.querySelector('#lessonsTable')
@@ -33,7 +33,7 @@ async function getAndShowData(url, isDeleted) {
             await viewData(lessons.items[i])}
             const lessonDataTemp = lessonsDataTable.join(' ')
             insertLessonsData.push(lessonDataTemp)
-            lessonsDataTable= ['<tr>', '<td></td>', '<td></td>', '<td></td>', '<td></td>', '<td></td>', '<td></td>','<td></td>', '<td></td>', '</tr>']
+            lessonsDataTable= ['<tr>', , , , , , , , , '</tr>']
           }
         var lessonHeader = headerLessons.join('')
         var lessonData = insertLessonsData.join(' ')

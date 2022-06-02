@@ -1,7 +1,7 @@
 var headerUserProjectsTableArray = ['<table width="750 px" border="1">', '<th>Id</th>', '<th>Project Name</th>', '<th>Type</th>', '<th>Status</th>', '<th>Action</th>', '</tr>']
 var userProjectsTableArray = ['<tr>',1,2,,,,'</tr>']
 var headerUserCompaniesTableArray = ['<table width="750 px" border="1">', '<th>Id</th>', '<th>Company Name</th>', '<th>Status</th>', '<th>Action</th>', '</tr>']
-var userCompaniesTableArray = ['<tr>',1,2,,,]
+var userCompaniesTableArray = ['<tr>',,2,,,'<tr>']
 var headerUserGroupsTableArray = ['<table width="750 px" border="1">', '<th>Id</th>', '<th>Group Name</th>', '<th>Status</th>', '<th>Action</th>', '</tr>']
 var userGroupsTableArray = ['<tr>',1,2,,,]
 
@@ -417,7 +417,7 @@ function getCompaniesData(companies){
         break;
       case 'name':
         //alert("name")
-        userCompaniesTableArray.splice(2, 1, '<td>' + companies[key] + '</td>')
+        userCompaniesTableArray.splice(2, 1, `<td><a href="/projectedit.html?projectid=${companies.id}">${companies[key]}</a></td>`)
         break;
       case 'status':
         if(companies[key] == '1'){
@@ -435,7 +435,7 @@ function getCompaniesData(companies){
   userCompaniesTableArray.push('<td></td><td></td></tr>')
  } else{
   let unassignCompany = `<button onclick="assignOrUnassignRelationsForUser('${assignCompanyUrl}', null, ${companies.id}, 'POST')">`;
-  userCompaniesTableArray.splice(4,1,'<td></td><td>'  + unassignCompany + 'Unassign' + '</td></tr>') 
+  userCompaniesTableArray.splice(4,1,'<td>'  + unassignCompany + 'Unassign' + '</td></tr>') 
 }
 }
 
@@ -460,7 +460,7 @@ async function getAndShowAvailableCompanies(){
       console.log(userCompaniesTableArray)
     var companyDataTemp = userCompaniesTableArray.join(' ')
     insertCompaniesData.push(companyDataTemp)
-    userCompaniesTableArray = ['<tr>',1,2,,,]
+    userCompaniesTableArray = ['<tr>',,2,,'</tr>']
     }
 }
 var tableCompany = headerUserCompaniesTableArray.join(' ')
@@ -480,7 +480,7 @@ async function getAvailableForAssignCompanies(companies){
         case 'id':
           //userCompanyIds.push(companies[key])
           let assignCompany = `<button onclick="assignOrUnassignRelationsForUser('${assignCompanyUrl}', ${companies.id}, null, 'POST')">`;
-          userCompaniesTableArray.splice(4, 1, '<td></td><td>'  + assignCompany + 'Assign' + '</td></tr>') 
+          userCompaniesTableArray.splice(4, 1, '<td>'  + assignCompany + 'Assign' + '</td></tr>') 
           userCompaniesTableArray.splice(1, 1, '<td>' + companies[key] + '</td>')
           break;
         case 'name':

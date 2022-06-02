@@ -807,6 +807,27 @@
   color: #fcfdfd;
   }
 
+  .down-save-button2 {
+    /* Hover */
+    top: 30px;
+    position: relative;
+    Left: 100px;
+    background: #4c85a2;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 12px;
+    font-family: 'Mulish-Regular';
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #fcfdfd;
+    }
+
 .down-back-button {
   /* Hover */
   top: 0px;
@@ -827,6 +848,27 @@
   text-align: center;
   color: #000000;
   }
+
+  .down-back-button2 {
+    /* Hover */
+    top: 0px;
+    position: relative;
+    Left: 200px;
+    background: #faee4e;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 12px;
+    font-family: 'Mulish-Regular';
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+    }
 
 .user-project-assign-button {
   /* Hover */
@@ -871,6 +913,33 @@
   color: #fcfdfd;
   visibility: hidden;
   }
+
+  .ass-tbl {
+    /* Hover */
+    top: 50px;
+    position: relative;
+    }
+
+  .subtitle-assign-buttonAss {
+    /* Hover */
+    top: 40px;
+    position: relative;
+    Left: 650px;
+    background: #0026ff;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 12px;
+    font-family: 'Mulish-Regular';
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #fcfdfd;
+    }
 
 .subtitle-assign-button2 {
   /* Hover */
@@ -1307,12 +1376,26 @@ color: #fcfdfd;
     width: 1320px;
     }
 
-.body-right{
+.body-right-lesson-mork{
   position: absolute;
   left: 800px;
   top: 210px;
-  width: 1320px;
+  width: 780px;
   }
+
+  .body-right-lesson-visual{
+    position: absolute;
+    left: 800px;
+    top: 610px;
+    width: 780px;
+    }
+  
+  .body-right{
+    position: absolute;
+    left: 800px;
+    top: 210px;
+    width: 780px;
+    }
 
 .body-data{
   position: absolute;
@@ -1374,5 +1457,57 @@ color: #fcfdfd;
   align-items: center;
   color: #000000;
 }
+
+.textarea-input-morkup{
+  padding-left: 10px;
+  width: 98%;
+  height: 250px;
+  margin-left: 10px;
+  /* bg */
+  background: #ffffff;
+  border: 1px solid #D0D4D9;
+  box-sizing: border-box;
+  border-radius: 12px;
+  font-family: 'Mulish-Regular';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.textarea-input-morkup-create{
+  padding-left: 10px;
+  width: 98%;
+  height: 250px;
+  margin-left: 10px;
+  /* bg */
+  background: #ffffff;
+  border: 1px solid #D0D4D9;
+  box-sizing: border-box;
+  border-radius: 12px;
+  font-family: 'Mulish-Regular';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
   
+.body-right-create-lesson-mork{
+  position: absolute;
+  left: 530px;
+  top: -50px;
+  width: 780px;
+  }
+
+
+  .body-right-visual-lesson-mork{
+    position: relative;
+    left: -300px;
+    top: 10px;
+    width: 780px;
+    }
  

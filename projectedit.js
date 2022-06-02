@@ -4,9 +4,12 @@ var headerProjectCompaniesTableArray = ['<table width="750 px" border="1">', '<t
 var projectCompaniesTableArray = ['<tr>',,2,,,,,'</tr>']
 var headerProjectGroupsTableArray = ['<table width="750 px" border="1">', '<th>Id</th>', '<th>Group Name</th>', '<th>Status</th>', '<th>Action</th>', '</tr>']
 var projectGroupsTableArray = ['']
+var headerProjectApplicationTableArray = ['<table width="750 px" border="1">', '<th>Id</th>', '<th>Application Name</th>', '<th>Status</th>', '<th>Action</th>', '</tr>']
+var projectApplicationTableArray = ['<tr>',,,,,'</tr>']
 
 let insertUsersData = []
 let insertCompaniesData = []
+let insertAppsData = []
 
 var projectUsersIds = []
 var userIdsTemp = []
@@ -16,7 +19,8 @@ var projecApplicationIds = []
 var applicationIdsTemp = []
 var projecGroupIds = []
 var groupIdsTemp = []
-
+var appListUrl = 'https://qa-platform.severnyded.tech/api/applications?search=&pageSize&pageNum&onlyDeleted=&includeDeleted=false'
+var assignAppUrl = 'https://qa-platform.severnyded.tech/api/applications/projects/'
 var assignUserUrl = 'https://qa-platform.severnyded.tech/api/projects/users/'
 var assignCompanyUrl = 'https://qa-platform.severnyded.tech/api/companies/projects/'
 var projectApplicationUrl = 'https://qa-platform.severnyded.tech/api/applications/projects/'
@@ -40,6 +44,7 @@ var assignComapnyBtn = document.querySelector('#companyAssign')
 var backToCompanyAssignBtn = document.querySelector('#backToEditC')
 var assignGroupBtn = document.querySelector('#groupAssign')
 var backToGroupAssignBtn = document.querySelector('#backToEditG')
+var appAssignBtn
 
 var id = document.getElementById('id')
 var active = document.getElementById('active')
@@ -184,7 +189,6 @@ saveProject.addEventListener('click', function () {
     changeProjectObj.item.name = projectName.value;
     changeProjectObj.item.type = parseInt(typeId.value);
     changeProjectObj.item.status = parseInt(statusId.value);
-    console.log(changeProjectObj.item.type)
     changeProjectObj.item.description = description.value;
    postEditedProjectData(getProjectUrl + projectId, changeProjectObj.item, 'PUT')
       .then((data) => {
@@ -192,7 +196,7 @@ saveProject.addEventListener('click', function () {
         if (resp.message) {
           validation.textContent = resp.message
           validation.style.visibility = 'visible';
-        }
+        } 
         else{
           window.location.href = 'projects.html';
         }
@@ -217,15 +221,23 @@ window.location.href = 'projects/lessons.html?projectid=' + projectId;
 applicationBtn.addEventListener('click', function () {
 
   applicationIdsTemp =[]; 
-  userSectionDiv.innerHTML = '<h2 class="userProjectslabel">Project Application</h2><button type="button" class="subtitle-assign-buttonC1" id="companyAssign" style="visibility:hidden">Assign</button><button type="button" class="subtitle-assign-buttonC" id="backToProjectA" visibility="visible">Back</button><div id="applicationsProjectData"></div>'
-   backToProjectBtn = document.querySelector('#backToProjectA')
-   backToProjectBtn.style.visibility = 'visible'
-   backToProjectBtn.onclick = () =>window.location.href = 'projectedit.html?projectid='+ projectId;
-   assignComapnyBtn.style.visibility = 'hidden'
+  userSectionDiv.innerHTML = '<h2 class="userProjectslabel">Project Application</h2><button type="button" class="subtitle-assign-buttonAss" id="appAssign" >Assign</button><div id="applicationsProjectData" class="ass-tbl"></div>'
+  applicationsProjectData = document.querySelector('#applicationsProjectData')
+   appAssign = document.querySelector('#appAssign')
+   appAssign.onclick = () =>assign();
    companySectionDiv.innerHTML = ''
    groupSectionDiv.innerHTML = ''
-   //getAndShowAvailableCompanies()
+   getAndShowProjectAppData()
  })
+
+function assign(){
+ applicationsProjectData = document.querySelector('#applicationsProjectData') 
+   appAssign = document.querySelector('#appAssign')
+   appAssign.onclick = () =>test();
+   companySectionDiv.innerHTML = ''
+   groupSectionDiv.innerHTML = ''
+   getAndShowProjectAppAvaData()
+ }
 
 active.addEventListener('change', function () {
 
@@ -463,7 +475,6 @@ if(checkIdOrNot){
 async function getAndShowProjectCompaniesData() {
   const companies = await getData(getProjectCompaniesUrl + projectId, token);
   for(var i=0; i < companies.items.length; i++){
-    console.log(companies.items.length)
       getCompaniesData(companies.items[i])
       if(projectCompaniesTableArray[2] == 2){
       }else{
@@ -538,7 +549,6 @@ async function getAndShowAvailableCompanies() {
 var tableCompany = headerProjectCompaniesTableArray.join(' ')
 var projectCompaniesData = insertCompaniesData.join(' ')
 var usersDiv28 = document.querySelector('#userProjectsData')
-console.log(tableCompany + projectCompaniesData)
 usersDiv28.innerHTML = tableCompany + projectCompaniesData;
 insertCompaniesData=[]
 
@@ -573,3 +583,113 @@ function getAvailableForAssignCompanies(company){
     }
   }
 }
+
+//***************************************************** A P P L I C A T I O N S ******************************************************
+
+async function getAndShowProjectAppData() {
+  const apps = await getData(assignAppUrl + projectId, token);
+  for(var i=0; i < apps.items.length; i++){
+      getAppData(apps.items[i])
+      if(projectApplicationTableArray[6] == 6){
+      }else{
+      const userDataTemp = projectApplicationTableArray.join(' ')
+      insertAppsData.push(userDataTemp)
+      projectApplicationTableArray = ['<tr>',,,,,'</tr>']
+      }
+   
+  }
+var tableApp = headerProjectApplicationTableArray.join(' ')
+var projectAppsData = insertAppsData.join(' ')
+applicationsProjectData.innerHTML = tableApp + projectAppsData;
+insertAppsData = []
+}
+
+function getAppData(app){
+  for(let key in app){
+  switch(key){
+    case 'id':
+      projecApplicationIds.push(app[key])
+      projectApplicationTableArray.splice(1, 1,'<td>' + app[key] + '</td>')
+      break;
+    case 'name':
+      projectApplicationTableArray.splice(2, 1, '<td>' + app[key])
+      break;
+    case 'status':
+      if(app[key] == '1'){
+        projectApplicationTableArray.splice(3, 1, '<td> Draft </td>')
+        }
+      else{
+        projectApplicationTableArray.splice(3, 1, '<td> Production </td>')
+        }
+      
+      break;
+    default:
+      break;
+  }
+ }
+ if(user.role === 'ADMIN'){
+  projectApplicationTableArray.push('<td></td><td></td><td></td><td></td><td></td></tr>')
+ } else{
+  let unassignApp = `<button onclick="assignOrUnassignRelationsForProject('${assignAppUrl}${projectId}/assign/', null, ${app.id}, 'POST')">`;
+  projectApplicationTableArray.splice(4,1,'<td>'  + unassignApp + 'Unassign' + '</td>')
+}
+}
+async function getAndShowProjectAppAvaData() {
+  const apps = await getData(appListUrl, token);
+  for(var i=0; i < apps.items.length; i++){
+    getAndShowAvailableProjectAppData(apps.items[i])
+      if(projectApplicationTableArray[6] == 6){
+      }else{
+      const userDataTemp = projectApplicationTableArray.join(' ')
+      insertAppsData.push(userDataTemp)
+      projectApplicationTableArray = ['<tr>',,,,,'</tr>']
+      }
+   
+  }
+var tableApp = headerProjectApplicationTableArray.join(' ')
+var projectAppsData = insertAppsData.join(' ')
+applicationsProjectData.innerHTML = tableApp + projectAppsData;
+insertAppsData = []
+}
+
+async function getAndShowAvailableProjectAppData(app) {
+    for(let key in app){
+      if(projecApplicationIds.includes(app.id)){
+        var checkIdOrNot = false
+      }
+      else{
+        var checkIdOrNot = true
+      }
+      if(checkIdOrNot){
+  
+        //var checkIdOrNot = true
+        switch(key){
+          case 'id':
+            projectApplicationTableArray.splice(1, 1,'<td>' + app[key] + '</td>')
+            break;
+          case 'name':
+            projectApplicationTableArray.splice(2, 1, '<td>' + app[key])
+            break;
+          case 'status':
+            if(app[key] == '1'){
+              projectApplicationTableArray.splice(3, 1, '<td> Draft </td>')
+              }
+            else{
+              projectApplicationTableArray.splice(3, 1, '<td> Production </td>')
+              }
+            
+            break;
+          default:
+            break;
+        }
+      }
+        else{
+          break;
+        }
+      }
+  if(checkIdOrNot){
+    let assignUser = `<button onclick="assignOrUnassignRelationsForProject('${assignAppUrl}${projectId}/assign/', ${app.id}, null, 'POST')">`;
+    projectApplicationTableArray.splice(4,1,'<td>'  + assignUser + 'Assign' + '</td></tr>')
+  }
+  }
+
