@@ -4,7 +4,8 @@ var projectsList = document.getElementById('projectsList')
 var projectsDivValue= ['<select id="parentProject" class="loginInput"  disabled="true">']
 var versionId = document.getElementById('versions')
 var versionsList = document.getElementById('verList')
-var versionsDivValue= ['<select id="versions" class="loginInput">']
+var appIds = []
+var versionsDivValue= ['<select id="versions" class="loginInput"> <option value="0"> --Please Select Version--</option>']
 var backToLessonsList = document.getElementById('backToLessonsList')
 var order = document.getElementById('order')
 var lessonName = document.getElementById('name')
@@ -13,7 +14,9 @@ var markup = document.getElementById('markup')
 var duration = document.getElementById('duration')
 var type = document.getElementById('typeSelect')
 var statusId = document.getElementById('statusSelect')
+var markupDiv = document.getElementById('markupDiv')
 
+var assignAppUrl = 'https://qa-platform.severnyded.tech/api/applications/projects/'
 const getLessonUrl = 'https://qa-platform.severnyded.tech/api/lessons/'
 const getProjectUrl = 'https://qa-platform.severnyded.tech/api/projects/'
 
@@ -28,7 +31,7 @@ const projectId = url.split('=')[2]
 var changeLessonObj = {
     item: {
       projectId: '',
-      //versionId: '',
+      versionId: '',
       order:'',
       name: '',
       description: '',
@@ -46,6 +49,7 @@ getAndShowUserData();
 // *********************************************************** G E N E R A L *********************************************************
 
 async function getAndShowUserData() {
+  
   const lesson = await getData(getLessonUrl + lessonId, token);
   for(let key in lesson.item){
     switch(key){
@@ -57,6 +61,9 @@ async function getAndShowUserData() {
         break;
       case 'status':
           statusId.value = lesson.item[key]
+        break;
+      case 'versionId':
+        await relationApplicationsId(lesson.item[key])
         break;
       case 'lastActivityAt':
         datetrim = lesson.item[key];
@@ -71,6 +78,7 @@ async function getAndShowUserData() {
         break;
       case 'markup':
         markup.value = lesson.item[key]
+        markupDiv.innerHTML = lesson.item[key]
         break;
       case 'order':
         order.value = lesson.item[key]
@@ -98,15 +106,42 @@ async function getAndShowUserData() {
     }
     
 }
-async function relationApp(projectId){
-  const project = await getData('https://qa-platform.severnyded.tech/api/applications/projects/' + projectId, token)
-  for(var i=0; i < project.items.length; i++){
-    await viewData(project.items[i])
-  }
-  projectsDivValue.push('</select>')
-   var projectData = projectsDivValue.join(' ')
-   projectsList.innerHTML = projectData;  
+
+async function relationApplicationsId(verId){
+  const version = await getData('https://qa-platform.severnyded.tech/api/versions/' + verId, token)
+    await relationApplications(version.item.id)
+
 }
+
+async function relationApplications(verId){
+  const applications = await getData(assignAppUrl + projectId, token)
+  for(var i=0; i < applications.items.length; i++){
+    appIds.push(applications.items[i].id)
+    relationVersion(applications.items[i].id, verId)
+  }
+
+}
+
+async function relationVersion(app, verId){
+  const versions = await getData('https://qa-platform.severnyded.tech/api/versions/applications/' + app + '?search=&onlyDeleted&pageSize&pageNum', token)
+  for(var i=0; i < versions.items.length; i++){
+    await addArrayData(versions.items[i])
+  }
+  versionsDivValue.push('</select>')
+  var appData = versionsDivValue.join(' ')
+  var versionsList = document.getElementById('versions')
+  versionsList.innerHTML = appData;  
+  versionsList.value = verId
+} 
+
+async function addArrayData(version){
+  for(let key in version){
+    if(appIds.includes(version.applicationId)){
+      versionsDivValue.push('<option value="'+ version.id +'">' + version.name +'</option>')
+      break;
+    }
+      }
+    }
 
 async function viewData(project){
   projectsDivValue.push('<option value="'+ project.id +'">' + project.name +'</option>')
@@ -142,7 +177,9 @@ async function getData(url = '', token = '') {
 }
 
 saveLesson.addEventListener('click', function () {
-  if (true) {
+  var versionsList = document.getElementById('versions')
+  if (versionsList.value != 0) {
+    changeLessonObj.item.applicationId = parseInt(versionsList.value)
     changeLessonObj.item.id = parseInt(id.value)
     changeLessonObj.item.projectId =  parseInt(projectsList.value);
     changeLessonObj.item.order =  parseInt(order.value);
@@ -164,7 +201,25 @@ saveLesson.addEventListener('click', function () {
       })
   }
   else {
-    validation.style.visibility = 'visible';
+    changeLessonObj.item.id = parseInt(id.value)
+    changeLessonObj.item.projectId =  parseInt(projectsList.value);
+    changeLessonObj.item.order =  parseInt(order.value);
+    changeLessonObj.item.name =  lessonName.value;
+    changeLessonObj.item.description = description.value;
+    changeLessonObj.item.markup = markup.value;
+    changeLessonObj.item.duration = parseInt(duration.value);
+    changeLessonObj.item.type = parseInt(type.value);
+    postData(getLessonUrl + lessonId, changeLessonObj.item, 'PUT')
+      .then((data) => {
+        resp = data
+        if (resp.message) {
+          validation.textContent = resp.message
+          validation.style.visibility = 'visible';
+        }
+        else{
+          window.location.href = 'lessons.html?projectid=' + projectId;
+        }
+      })
   }
 })
 
@@ -249,4 +304,8 @@ async function assignOrUnassignRelationsForUser(url, assignItemId = '', unassign
     window.location.href = 'useredit.html?userId='+ userId;
   }
 }
+
+markup.addEventListener('change', function(){
+  markupDiv.innerHTML = markup.value
+})
 

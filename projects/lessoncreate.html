@@ -32,6 +32,11 @@
             
         </div>
         <div class="body-table" id="lessonData">
+            <h1 class="loginLabel">TEMP Project TEMP</h1>
+            <div id="projectsList">
+                <select id="parentProject" class="input" disabled="true" >
+                </select> 
+        </div>
             <h1 class="loginLabel">Order</h1>
             <input type="text" class="input" id="order"><br>
             <h1 class="loginLabel">Type</h1>
@@ -43,22 +48,19 @@
             <h1 class="loginLabel">Duration</h1>
             <input type="text" class="input" id="duration"><br>
             <h1 class="loginLabel">App Version</h1>
-            <select id="versionSelect" class="input">
-                <option value="">--Please choose App Version--</option>
-                <option value="1">demo1</option>
-                <option value="2">demo2</option>
-            </select> 
+            <div id="versionsListDiv">
+                <select id="versionsList" class="input" >
+                </select> 
+        </div>
             <h1 class="loginLabel">Lesson Name</h1>
             <input type="text" class="input" id="name"><br>
             <h1 class="loginLabel">Lesson Description</h1>
             <textarea id="description" class="textarea-input" name="story" rows="5" cols="33"></textarea>
-            <h1 class="loginLabel">Lesson Markup</h1>
-            <textarea id="markup" class="textarea-input" name="story" rows="5" cols="33"></textarea>
-            <h1 class="loginLabel">TEMP Project TEMP</h1>
-            <div id="projectsList">
-                <select id="parentProject" class="input" disabled="true" >
-                </select> 
-        </div>
+            <div class="body-right-create-lesson-mork">
+                <h1 class="loginLabel">Lesson Markup</h1>
+                <textarea id="markup" class="textarea-input-morkup-create" name="story" rows="5" cols="33"></textarea>
+            </div>
+
             <div><button type="button" class="down-save-button" id="createLesson">Create</button></div>
             <div><button type="button" class="down-back-button" id="backToLessons">Cancel</button></div>
             
